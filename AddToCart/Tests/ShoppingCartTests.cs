@@ -27,7 +27,7 @@ namespace AddToCart.Tests
             bool isBookTitleMatch = booksPage.IsTitleCorrect(firstSearchResult, BOOK_TITLE_VALUE);
             bool isPaperBack = booksPage.IsTherePaperBack(firstSearchResult);
             string paperBackPrice = booksPage.GetPaperBackPrice(firstSearchResult);
-            Console.WriteLine($"PaperBack price: {paperBackPrice}");
+            Console.WriteLine($"Paperback price: {paperBackPrice}");
             Assert.Multiple(() =>
             {
                 Assert.That(isBookTitleMatch, Is.True, "Book Title does not match");
@@ -35,8 +35,15 @@ namespace AddToCart.Tests
                 Assert.That(string.IsNullOrEmpty(paperBackPrice), Is.False, "Paperback Price is not displayed");
             });
 
-            Console.WriteLine($"{Environment.NewLine}UA3: From the available editions choose 'paperback' ");
-            booksPage.ClickPaperBack(firstSearchResult);
+            Console.WriteLine($"{Environment.NewLine}UA3: From the available editions choose 'paperback'");
+            BookDetailsPage bookDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
+            bookDetailsPage.ClickPaperbackOption();
+            string paperBackDetailsPrice = bookDetailsPage.GetPaperbackPrice();
+            Console.WriteLine($"Paperback details price: {paperBackDetailsPrice}");
+            Assert.That(paperBackPrice, Is.EqualTo(paperBackDetailsPrice), "Paperback price from item list differs");
+
+            Console.WriteLine($"{Environment.NewLine}UA4: Add it to the shopping basket as a gift");
+
         }
     }
 }

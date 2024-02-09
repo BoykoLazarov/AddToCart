@@ -58,10 +58,11 @@ namespace AddToCart.Pages
             return bookTitleElement.GetAttribute("innerText");
         }
 
-        public void ClickPaperBack(IWebElement result)
+        public BookDetailsPage ClickPaperBack(IWebElement result)
         {
             IWebElement paperbackElement = result.FindElement(PaperBackLocator);
             paperbackElement.Click();
+            return new BookDetailsPage();
         }
     }
 }
