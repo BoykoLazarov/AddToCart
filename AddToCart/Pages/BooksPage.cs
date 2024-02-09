@@ -1,4 +1,5 @@
-﻿using AddToCart.Common.Utility;
+﻿using AddToCart.Common.Extensions;
+using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -55,14 +56,14 @@ namespace AddToCart.Pages
         public string GetPaperBackPrice(IWebElement result)
         {
             IWebElement bookTitleElement = result.FindElement(PaperBackPriceLocator);
-            return bookTitleElement.GetAttribute("innerText");
+            return bookTitleElement.GetAttribute("innerText").GetNumericPart();
         }
 
-        public BookDetailsPage ClickPaperBack(IWebElement result)
+        public ProductDetailsPage ClickPaperBack(IWebElement result)
         {
             IWebElement paperbackElement = result.FindElement(PaperBackLocator);
             paperbackElement.Click();
-            return new BookDetailsPage();
+            return new ProductDetailsPage();
         }
     }
 }
