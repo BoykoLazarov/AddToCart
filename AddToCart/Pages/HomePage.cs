@@ -38,7 +38,6 @@ namespace AddToCart.Pages
 
         public BooksPage NavigateToBooks()
         {
-            //BooksLink.WaitToBeClickable();
             BooksLink.Click();
             return new BooksPage();
         }
