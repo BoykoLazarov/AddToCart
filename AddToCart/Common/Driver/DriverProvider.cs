@@ -30,7 +30,8 @@ namespace AddToCart.Common.Driver
 
         private static IWebDriver InitializeWebDriver()
         {
-            string browser = WebSettingsProvider.GetSettings().BrowserToUse;
+            string browserName = WebSettingsProvider.GetSettings().BrowserToUse;
+            string browser = string.IsNullOrEmpty(browserName) ? CHROME : browserName;
 
             switch (browser)
             {
