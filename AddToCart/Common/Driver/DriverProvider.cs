@@ -8,9 +8,9 @@ namespace AddToCart.Common.Driver
 {
     public class DriverProvider
     {
-        private const string CHROME = "Chrome";
-        private const string EDGE = "Edge";
-        private const string FIREFOX = "Firefox";
+        private const string CHROME = "chrome";
+        private const string EDGE = "edge";
+        private const string FIREFOX = "firefox";
         private const string SCREEN_RESOLUTION = "--window-size=1920,1080";
         private const string INCOGNITO = "--incognito";
 
@@ -23,7 +23,7 @@ namespace AddToCart.Common.Driver
 
         private static IWebDriver InitializeWebDriver()
         {
-            string browserName = WebSettingsProvider.GetSettings().BrowserToUse;
+            string browserName = WebSettingsProvider.GetSettings().BrowserToUse.ToLower();
             string browser = string.IsNullOrEmpty(browserName) ? CHROME : browserName;
 
             switch (browser)
