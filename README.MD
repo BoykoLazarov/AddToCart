@@ -21,3 +21,9 @@ Test Demo project against the https://www.amazon.co.uk/ website
 4. In a Dev or QA enironment there would be ways to skip the CAPTCHA so it does not impede testing and automation
 5. Some of the time an additional navigation page is presented before the actual HomePage
 6. A check has been added to wait for 5 seconds if this page is displayed and navigate to the HomePage
+
+# Resources
+1. Added video recording of the single scenario containing all UA, as an example how it runs locally
+2. The recording is located in the project's /AddToCart/Resources folder
+3. The recording can be viewed with VLC media player
+4. The CAPTCHA is solved manually
