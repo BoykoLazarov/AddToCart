@@ -7,10 +7,10 @@ namespace AddToCart.Pages
     {
         public HomePage() => WaitToBeDisplayed();
 
-
-        private By AmazonLogoLocator = By.Id("nav-logo-sprites"); 
+        private By AmazonLogoLocator = By.Id("nav-logo-sprites");
         private By AmazonMidLogoLocator => By.Id("nav-bb-logo");
         private By AcceptCookiesLocator = By.Id("sp-cc-accept");
+        private By HelloSignInLinkLocator = By.Id("nav-link-accountList-nav-line-1");
         private By AddressMessageLocator = By.XPath("//*[@class='a-button a-spacing-top-base a-button-base glow-toaster-button glow-toaster-button-dismiss']");
         private By BooksHyperlinkLocator = By.XPath("//*[@data-csa-c-slot-id='nav_cs_4']");
 
@@ -20,6 +20,8 @@ namespace AddToCart.Pages
         private IWebElement BooksLink => WebUtils.FindElementWithDisplayCheck(BooksHyperlinkLocator);
 
         public bool IsAmazonLogoDisplayed() => WebUtils.IsDisplayed(AmazonLogoLocator);
+        public bool IsSignInLinkDisplayed() => WebUtils.IsDisplayed(HelloSignInLinkLocator);
+
         private void WaitToBeDisplayed()
         {
             // Sometimes a mediator page is displayed before the HomePage

@@ -14,8 +14,8 @@ namespace AddToCart.Tests
         public void SetUp()
         {
             Driver = DriverProvider.Driver;
-            string nameContent = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
-            Console.WriteLine($"Starting test case: {nameContent}");
+            string testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
+            Console.WriteLine($"Starting test case: {testNameAttributeValue}{Environment.NewLine}");
         }
 
         public HomePage NavigateToHomePage()

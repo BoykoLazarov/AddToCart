@@ -1,4 +1,5 @@
 ﻿using AddToCart.Attributes;
+using AddToCart.Common.Utility;
 using AddToCart.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -15,12 +16,22 @@ namespace AddToCart.Tests
         [Name("Search book and order from amazon.co.uk")]
         public void SearchAndOrderBook()
         {
-            Console.WriteLine($"{Environment.NewLine} UA1: Navigate in Chrome browser to amazon.co.uk");
+            Console.WriteLine($"UA1: Navigate in Chrome browser to amazon.co.uk{Environment.NewLine}");
             HomePage homePage = NavigateToHomePage();
             homePage.AcceptCookies();
             homePage.DismissMessageIfDisplayed();
 
-            Console.WriteLine($"{Environment.NewLine} UA2: Search in section 'Books' for 'Harry Potter and the Cursed Child' 1 & 2");
+            string expectedUrl = WebSettingsProvider.GetSettings().BaseUrl;
+            string actualUrl = Driver.Url;
+            bool isSignInDisplayed = homePage.IsSignInLinkDisplayed();
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actualUrl, Is.EqualTo(expectedUrl), "HomePage url is not correct");
+                Assert.That(isSignInDisplayed, Is.True, "Sign in link is not displayed");
+            });
+
+            Console.WriteLine($"UA2: Search in section 'Books' for 'Harry Potter and the Cursed Child' 1 & 2{Environment.NewLine}");
             BooksPage booksPage = homePage.NavigateToBooks();
             booksPage.BookSearch(BOOK_SEARCH_VALUE);
             IWebElement firstSearchResult = booksPage.GetFirstSearchResult();
@@ -36,7 +47,7 @@ namespace AddToCart.Tests
                 Assert.That(string.IsNullOrEmpty(paperBackPrice), Is.False, "Paperback Price is empty");
             });
 
-            Console.WriteLine($"{Environment.NewLine} UA3: From the available editions choose 'paperback'");
+            Console.WriteLine($"UA3: From the available editions choose 'paperback'{Environment.NewLine}");
             ProductDetailsPage productDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
             productDetailsPage.ClickPaperbackOption();
             string paperBackDetailsPrice = productDetailsPage.GetPaperbackPrice();
@@ -48,13 +59,13 @@ namespace AddToCart.Tests
                 Assert.That(bookTitle, Is.EqualTo(BOOK_TITLE_VALUE), "Product title from item list differs");
             });
 
-            Console.WriteLine($"{Environment.NewLine} UA4: Add it to the shopping basket as a gift");
+            Console.WriteLine($"UA4: Add it to the shopping basket as a gift {Environment.NewLine}");
             SmartWagonPage smartWagonPage = productDetailsPage.ClickAddToCart();
             string subtotalPrice = smartWagonPage.GetSubtotalPrice();
             Console.WriteLine($"Subtotal price: {subtotalPrice}");
             Assert.That(subtotalPrice, Is.EqualTo(paperBackDetailsPrice), "Paperback price from item list differs");
 
-            Console.WriteLine($"{Environment.NewLine} UA5: Checks the contents of the shopping basket");
+            Console.WriteLine($"UA5: Checks the contents of the shopping basket {Environment.NewLine}");
             ShoppingCartPage shoppingCartPage = smartWagonPage.ClickShoppingCart();
             string shoppingCartquantity = shoppingCartPage.GetQuantity();
             string shoppingCartPrice = shoppingCartPage.GetPrice();

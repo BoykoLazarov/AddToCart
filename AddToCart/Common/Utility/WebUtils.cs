@@ -46,14 +46,12 @@ namespace AddToCart.Common.Utility
                     }
                     else
                     {
-                        // Element found but not displayed, continue waiting
                         throw new NoSuchElementException();
                     }
                 });
             }
             catch (WebDriverTimeoutException)
             {
-                // Element not found or not displayed within the timeout, throw an exception
                 throw new NotFoundException($"Element with locator '{locator}' not found or not displayed within the specified timeout of {Default_TimeOut.TotalSeconds} seconds.");
             }
         }
