@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 
 namespace AddToCart.Tests
 {
-    public class ShoppingCartTests : WebTestBase
+    public class UserActionTests : WebTestBase
     {
         private const string BOOK_SEARCH_VALUE = "Harry Potter and the Cursed Child 1 & 2";
         private const string BOOK_TITLE_VALUE = "Harry Potter and the Cursed Child - Parts One and Two: The Official Playscript of the Original West End Production";

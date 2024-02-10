@@ -27,3 +27,31 @@ Test Demo project against the https://www.amazon.co.uk/ website
 2. The recording is located in the project's /AddToCart/Resources folder
 3. The recording can be viewed with VLC media player
 4. The CAPTCHA is solved manually
+
+# Structure
+1. WebSettings.json file contains:
+1.1.  The browser that will be used e.g. Chrome/Edge/Firefox
+1.2.  Website base URL
+
+2. PageObject model is used for the web pages containing locators/elements/relevant methods
+2.1 Each page object inherits the BasePage.cs class
+
+3. BasePage class where the Driver is being accessed from the pageobjects
+
+4. Number of utility classes used for different needs 
+4.1. JsonFileReader - reads values from json files, in this case the WebSettings,json file
+4.2. WebSettingsProvider - maps the json file to readable object
+4.3. WebUtils - used to add conviniet webElement methods such as: 
+	* WaitUntilDisplayed()
+	* FindElementWithDisplayCheck()
+	* IsDisplayed()
+5. Extensions
+5.1. StringExtensions class for conviniet string manipulation
+
+6. DriverProvider singleton class to initialize, quit, set the web driver and driver options
+
+7. UserActionsTests class containing the NUnit tests
+
+8. WebTestBaseClass with SetUp and TearDown methods to start and quit the web driver, navigate to the website and some logging
+
+9. Name attribute class is used to add the "Name" attribute to the NUnit tests to have more user friendly readable test names

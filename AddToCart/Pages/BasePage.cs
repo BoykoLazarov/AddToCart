@@ -9,6 +9,7 @@ namespace AddToCart.Pages
         {
             Driver = DriverProvider.Driver;
         }
+
         protected IWebDriver Driver;
     }
 }

@@ -48,14 +48,9 @@ namespace AddToCart.Common.Driver
                     return new EdgeDriver(edgeOptions);
 
                 case FIREFOX:
-                    var profile = new FirefoxProfile();
-                    profile.SetPreference("network.cookie.cookieBehavior", 0);
-
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.AddArgument(SCREEN_RESOLUTION);
                     firefoxOptions.AddArgument(INCOGNITO);
-                    firefoxOptions.AcceptInsecureCertificates = true;
-                    firefoxOptions.Profile = profile;
                     return new FirefoxDriver(firefoxOptions);
 
                 default:
