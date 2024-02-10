@@ -17,7 +17,7 @@ Test Demo project against the https://www.amazon.co.uk/ website
 # Reviewer notes
 1. The https://www.amazon.co.uk/ website detects automated actions
 2. Most of the time upon loading the webpage a CAPTCHA image will be presented
-3. The CAPTCHA has to be manually completed, for the test to c
+3. The CAPTCHA has to be manually completed, for the test to continue
 4. In a Dev or QA enironment there would be ways to skip the CAPTCHA so it does not impede testing and automation
 5. Some of the time an additional navigation page is presented before the actual HomePage
 6. A check has been added to wait for 5 seconds if this page is displayed and navigate to the HomePage
