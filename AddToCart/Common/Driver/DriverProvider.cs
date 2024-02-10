@@ -36,26 +36,43 @@ namespace AddToCart.Common.Driver
             switch (browser)
             {
                 case CHROME:
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArgument(SCREEN_RESOLUTION);
-                    chromeOptions.AddArgument(INCOGNITO);
-                    return new ChromeDriver(chromeOptions);
+                    return GetChromeDriverWithOptions();
 
                 case EDGE:
-                    EdgeOptions edgeOptions = new EdgeOptions();
-                    edgeOptions.AddArgument(SCREEN_RESOLUTION);
-                    edgeOptions.AddArgument(INCOGNITO);
-                    return new EdgeDriver(edgeOptions);
+                    return GetEdgeDriverWithOptions();
 
                 case FIREFOX:
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.AddArgument(SCREEN_RESOLUTION);
-                    firefoxOptions.AddArgument(INCOGNITO);
-                    return new FirefoxDriver(firefoxOptions);
+                    return GetFirefoxDriverWithOptions();
 
                 default:
-                    throw new NotSupportedException($"Browser '{browser}' is not supported.");
+                    Console.WriteLine($"Browser '{browser}' is not supported.");
+                    Console.WriteLine($"Starting default '{CHROME}' web driver.");
+                    return GetChromeDriverWithOptions();
             }
+        }
+
+        private static ChromeDriver GetChromeDriverWithOptions()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument(SCREEN_RESOLUTION);
+            chromeOptions.AddArgument(INCOGNITO);
+            return new ChromeDriver(chromeOptions);
+        }
+
+        private static EdgeDriver GetEdgeDriverWithOptions()
+        {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.AddArgument(SCREEN_RESOLUTION);
+            edgeOptions.AddArgument(INCOGNITO);
+            return new EdgeDriver(edgeOptions);
+        }
+
+        private static FirefoxDriver GetFirefoxDriverWithOptions()
+        {
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.AddArgument(SCREEN_RESOLUTION);
+            firefoxOptions.AddArgument(INCOGNITO);
+            return new FirefoxDriver(firefoxOptions);
         }
 
         public static void QuitDriver()

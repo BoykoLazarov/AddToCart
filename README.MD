@@ -45,6 +45,7 @@ Test Demo project against the https://www.amazon.co.uk/ website
 	* WaitUntilDisplayed()
 	* FindElementWithDisplayCheck()
 	* IsDisplayed()
+	
 5. Extensions
 5.1. StringExtensions class for conviniet string manipulation
 
