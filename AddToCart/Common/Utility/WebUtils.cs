@@ -6,7 +6,7 @@ namespace AddToCart.Common.Utility
 {
     public class WebUtils
     {
-        private static IWebDriver Driver => DriverProvider.Driver;
+        private static IWebDriver Driver => DriverProvider.Instance.GetDriver();
         private static TimeSpan Default_TimeOut => new TimeSpan(0, 0, 30);
         private static TimeSpan Short_TimeOut => new TimeSpan(0, 0, 5);
         private static WebDriverWait Wait => new WebDriverWait(Driver, Default_TimeOut);

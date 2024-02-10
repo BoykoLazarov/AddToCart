@@ -13,7 +13,7 @@ namespace AddToCart.Tests
         [SetUp]
         public void SetUp()
         {
-            Driver = DriverProvider.Driver;
+            Driver = DriverProvider.Instance.GetDriver();
             string testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
             Console.WriteLine($"Starting test case: {testNameAttributeValue}{Environment.NewLine}");
         }
@@ -28,7 +28,7 @@ namespace AddToCart.Tests
         [TearDown]
         public void TearDown()
         {
-            DriverProvider.QuitDriver();
+            DriverProvider.Instance.QuitDriver();
         }
     }
 }

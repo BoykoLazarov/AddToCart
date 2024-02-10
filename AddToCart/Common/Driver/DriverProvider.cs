@@ -14,19 +14,12 @@ namespace AddToCart.Common.Driver
         private const string SCREEN_RESOLUTION = "--window-size=1920,1080";
         private const string INCOGNITO = "--incognito";
 
-        private static IWebDriver _driver;
+        private static readonly ThreadLocal<DriverProvider> DriverProviderInstance = new ThreadLocal<DriverProvider>(() => new DriverProvider(), trackAllValues: true);
+        private IWebDriver _driver;
 
-        public static IWebDriver Driver
-        {
-            get
-            {
-                if (_driver == null)
-                {
-                    _driver = InitializeWebDriver();
-                }
-                return _driver;
-            }
-        }
+        public IWebDriver GetDriver() => _driver ??= InitializeWebDriver();
+
+        public static DriverProvider Instance => DriverProviderInstance.Value;
 
         private static IWebDriver InitializeWebDriver()
         {
@@ -75,12 +68,24 @@ namespace AddToCart.Common.Driver
             return new FirefoxDriver(firefoxOptions);
         }
 
-        public static void QuitDriver()
+        public void QuitDriver()
         {
-            if (_driver != null)
+            try
             {
-                _driver.Quit();
-                _driver = null;
+                if (Instance._driver != null)
+                {
+                    Instance._driver.Quit();
+                    Instance._driver = null;
+                }
+                else
+                {
+                    Console.WriteLine("Instance drivers are closed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while quitting the driver instance");
+                Console.WriteLine($"Driver instance exception message: {ex}");
             }
         }
     }

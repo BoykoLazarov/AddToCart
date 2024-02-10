@@ -7,7 +7,7 @@ namespace AddToCart.Pages
     {
         public BasePage()
         {
-            Driver = DriverProvider.Driver;
+            Driver = DriverProvider.Instance.GetDriver();
         }
 
         protected IWebDriver Driver;
