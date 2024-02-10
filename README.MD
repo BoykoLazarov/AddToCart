@@ -30,24 +30,24 @@ Test Demo project against the https://www.amazon.co.uk/ website
 
 # Structure
 1. WebSettings.json file contains:
-1.1.  The browser that will be used e.g. Chrome/Edge/Firefox
-1.2.  Website base URL
+*  The browser that will be used e.g. Chrome/Edge/Firefox
+*  Website base URL
 
 2. PageObject model is used for the web pages containing locators/elements/relevant methods
-2.1 Each page object inherits the BasePage.cs class
+* Each page object inherits the BasePage.cs class
 
 3. BasePage class where the Driver is being accessed from the pageobjects
 
 4. Number of utility classes used for different needs 
-4.1. JsonFileReader - reads values from json files, in this case the WebSettings,json file
-4.2. WebSettingsProvider - maps the json file to readable object
-4.3. WebUtils - used to add conviniet webElement methods such as: 
+* JsonFileReader - reads values from json files, in this case the WebSettings,json file
+* WebSettingsProvider - maps the json file to readable object
+* WebUtils - used to add conviniet webElement methods such as: 
 	* WaitUntilDisplayed()
 	* FindElementWithDisplayCheck()
 	* IsDisplayed()
 	
 5. Extensions
-5.1. StringExtensions class for conviniet string manipulation
+* StringExtensions class for conviniet string manipulation
 
 6. DriverProvider singleton class to initialize, quit, set the web driver and driver options
 
