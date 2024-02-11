@@ -16,8 +16,7 @@ namespace AddToCart.Tests
         {
             Driver = DriverProvider.Instance.GetDriver();
 
-            string? testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
-            string testCaseName = string.IsNullOrEmpty(testNameAttributeValue) ? TEST_CASE_NO_NAME : testNameAttributeValue;
+            string testCaseName = GetTestCaseNameAttribute();
 
             Console.WriteLine($"Starting test case: {testCaseName}{Environment.NewLine}");
         }
@@ -27,6 +26,12 @@ namespace AddToCart.Tests
             Driver.Navigate().GoToUrl(WebSettingsProvider.GetSettings().BaseUrl);
 
             return new HomePage();
+        }
+
+        private string GetTestCaseNameAttribute()
+        {
+            string? testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
+            return string.IsNullOrEmpty(testNameAttributeValue) ? TEST_CASE_NO_NAME : testNameAttributeValue;
         }
 
         [TearDown]
