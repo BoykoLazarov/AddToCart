@@ -10,6 +10,7 @@ namespace AddToCart.Tests
     {
         private const string BOOK_SEARCH_VALUE = "Harry Potter and the Cursed Child 1 & 2";
         private const string BOOK_TITLE_VALUE = "Harry Potter and the Cursed Child - Parts One and Two: The Official Playscript of the Original West End Production";
+        private const string GIFT_LABEL = "This order contains a gift";
         private const string EXPECTED_QUANTITY = "1";
 
         [Test]
@@ -50,6 +51,7 @@ namespace AddToCart.Tests
             Console.WriteLine($"UA3: From the available editions choose 'paperback' {Environment.NewLine}");
             ProductDetailsPage productDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
             productDetailsPage.ClickPaperbackOption();
+            productDetailsPage.ClickAddGiftOptions();
             string paperBackDetailsPrice = productDetailsPage.GetPaperbackPrice();
             string bookTitle = productDetailsPage.GetProductTitle();
 
@@ -69,11 +71,15 @@ namespace AddToCart.Tests
             ShoppingCartPage shoppingCartPage = smartWagonPage.ClickShoppingCart();
             string shoppingCartquantity = shoppingCartPage.GetQuantity();
             string shoppingCartPrice = shoppingCartPage.GetPrice();
+            string giftLabel = shoppingCartPage.GetGiftLabelText();
+            bool isGiftCheckboxSelected = shoppingCartPage.IsGiftCheckboxSelected();
 
             Assert.Multiple(() =>
             {
                 Assert.That(shoppingCartquantity, Is.EqualTo(EXPECTED_QUANTITY), "Quantity differs from expected");
                 Assert.That(shoppingCartPrice, Is.EqualTo(paperBackPrice), "Paperback price from item list differs");
+                Assert.That(giftLabel, Is.EqualTo(GIFT_LABEL), "Gift label not displayed");
+                Assert.That(isGiftCheckboxSelected, Is.True, "Gift label not displayed");
             });
         }
 
@@ -143,6 +149,7 @@ namespace AddToCart.Tests
             Console.WriteLine($"UA3: From the available editions choose 'paperback' {Environment.NewLine}");
             ProductDetailsPage productDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
             productDetailsPage.ClickPaperbackOption();
+            productDetailsPage.ClickAddGiftOptions();
             string paperBackDetailsPrice = productDetailsPage.GetPaperbackPrice();
             string bookTitle = productDetailsPage.GetProductTitle();
 
@@ -173,6 +180,7 @@ namespace AddToCart.Tests
             Console.WriteLine($"UA3: From the available editions choose 'paperback' {Environment.NewLine}");
             ProductDetailsPage productDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
             productDetailsPage.ClickPaperbackOption();
+            productDetailsPage.ClickAddGiftOptions();
             string paperBackDetailsPrice = productDetailsPage.GetPaperbackPrice();
 
             Console.WriteLine($"UA4: Add it to the shopping basket as a gift {Environment.NewLine}");
@@ -202,6 +210,7 @@ namespace AddToCart.Tests
             Console.WriteLine($"UA3: From the available editions choose 'paperback' {Environment.NewLine}");
             ProductDetailsPage productDetailsPage = booksPage.ClickPaperBack(firstSearchResult);
             productDetailsPage.ClickPaperbackOption();
+            productDetailsPage.ClickAddGiftOptions();
 
             Console.WriteLine($"UA4: Add it to the shopping basket as a gift {Environment.NewLine}");
             SmartWagonPage smartWagonPage = productDetailsPage.ClickAddToCart();
@@ -210,11 +219,15 @@ namespace AddToCart.Tests
             ShoppingCartPage shoppingCartPage = smartWagonPage.ClickShoppingCart();
             string shoppingCartquantity = shoppingCartPage.GetQuantity();
             string shoppingCartPrice = shoppingCartPage.GetPrice();
+            string giftLabel = shoppingCartPage.GetGiftLabelText();
+            bool isGiftCheckboxSelected = shoppingCartPage.IsGiftCheckboxSelected();
 
             Assert.Multiple(() =>
             {
                 Assert.That(shoppingCartquantity, Is.EqualTo(EXPECTED_QUANTITY), "Quantity differs from expected");
                 Assert.That(shoppingCartPrice, Is.EqualTo(paperBackPrice), "Paperback price from item list differs");
+                Assert.That(giftLabel, Is.EqualTo(GIFT_LABEL), "Gift label not displayed");
+                Assert.That(isGiftCheckboxSelected, Is.True, "Gift label not displayed");
             });
         }
     }
