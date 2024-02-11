@@ -14,7 +14,7 @@ namespace AddToCart.Common.Driver
         private IWebDriver InitializeWebDriver()
         {
             _driver = new DriverFactory().GetDriver();
-            _driver.Manage().Timeouts().PageLoad = Timeouts.GetDefaultBrowserTimeout();
+            _driver.Manage().Timeouts().PageLoad = Timeouts.GetDefaultTimeout();
             return _driver;
         }
 
