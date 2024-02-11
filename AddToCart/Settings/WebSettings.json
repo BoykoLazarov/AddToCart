@@ -1,4 +1,6 @@
 {
   "browserToUse": "Chrome",
-  "baseUrl": "https://www.amazon.co.uk/"
+  "baseUrl": "https://www.amazon.co.uk/",
+  "defaultTimeout": "30",
+  "shortTimeout": "5"
 }

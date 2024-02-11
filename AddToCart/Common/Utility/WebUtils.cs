@@ -7,10 +7,8 @@ namespace AddToCart.Common.Utility
     public class WebUtils
     {
         private static IWebDriver Driver => DriverProvider.Instance.GetDriver();
-        private static TimeSpan DefaultTimeout => new TimeSpan(0, 0, 30);
-        private static TimeSpan ShortTimeout => new TimeSpan(0, 0, 5);
-        private static WebDriverWait Wait => new WebDriverWait(Driver, DefaultTimeout);
-        private static WebDriverWait WaitShort => new WebDriverWait(Driver, ShortTimeout);
+        private static WebDriverWait Wait => Timeouts.GetDefaultWait();
+        private static WebDriverWait WaitShort => Timeouts.GetShortWait();
 
         public static void WaitUntilDisplayed(By locator)
         {
@@ -52,7 +50,7 @@ namespace AddToCart.Common.Utility
             }
             catch (WebDriverTimeoutException)
             {
-                throw new NotFoundException($"Element with locator '{locator}' not found or not displayed within the specified timeout of {DefaultTimeout.TotalSeconds} seconds.");
+                throw new NotFoundException($"Element with locator '{locator}' not found or not displayed within the default timeout.");
             }
         }
 
