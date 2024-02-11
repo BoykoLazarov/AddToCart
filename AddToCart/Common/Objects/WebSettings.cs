@@ -4,5 +4,6 @@
     {
         public string BrowserToUse { get; set; }
         public string BaseUrl { get; set; }
+        public int? BrowserPageTimeout { get; set; }
     }
 }

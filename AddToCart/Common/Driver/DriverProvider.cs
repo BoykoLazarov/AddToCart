@@ -11,7 +11,12 @@ namespace AddToCart.Common.Driver
 
         public static DriverProvider Instance => DriverProviderInstance.Value;
 
-        private static IWebDriver InitializeWebDriver() => new DriverFactory().GetDriver();
+        private IWebDriver InitializeWebDriver()
+        {
+            _driver = new DriverFactory().GetDriver();
+            _driver.Manage().Timeouts().PageLoad = Timeouts.GetDefaultBrowserTimeout();
+            return _driver;
+        }
 
         public void QuitDriver()
         {
