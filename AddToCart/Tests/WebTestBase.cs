@@ -9,13 +9,17 @@ namespace AddToCart.Tests
     public class WebTestBase
     {
         protected static IWebDriver Driver { get; set; }
+        private const string TEST_CASE_NO_NAME = "Test case name attribute is not set";
 
         [SetUp]
         public void SetUp()
         {
             Driver = DriverProvider.Instance.GetDriver();
-            string testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
-            Console.WriteLine($"Starting test case: {testNameAttributeValue}{Environment.NewLine}");
+
+            string? testNameAttributeValue = TestContext.CurrentContext.Test.Properties.Get("Name")?.ToString();
+            string testCaseName = string.IsNullOrEmpty(testNameAttributeValue) ? TEST_CASE_NO_NAME : testNameAttributeValue;
+
+            Console.WriteLine($"Starting test case: {testCaseName}{Environment.NewLine}");
         }
 
         public HomePage NavigateToHomePage()
