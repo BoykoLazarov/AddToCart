@@ -13,15 +13,19 @@ namespace AddToCart.Pages
         private By PaperbackOptionPriceLocator => By.CssSelector(".slot-price");
         private By AddToCartButtonLocator => By.Id("add-to-cart-button");
         private By ProductTitleLocator => By.Id("productTitle");
+        private By AddGiftOptionsLocator => By.Id("gift-wrap");
 
         private IWebElement PaperbackOption => WebUtils.FindElementWithDisplayCheck(PaperbackOptionLocator);
         private IWebElement AddToCartButton => WebUtils.FindElementWithDisplayCheck(AddToCartButtonLocator);
         private IWebElement ProductTitle => WebUtils.FindElementWithDisplayCheck(ProductTitleLocator);
+        private IWebElement AddGiftOptionsCheckbox => WebUtils.FindElementWithDisplayCheck(AddGiftOptionsLocator);
 
         private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(BackToResultsButton);
 
         public void ClickPaperbackOption() => PaperbackOption.Click();
         public string GetProductTitle() => ProductTitle.Text;
+
+        public void ClickAddGiftOptions() => AddGiftOptionsCheckbox.Click();
 
         public string GetPaperbackPrice()
         {
