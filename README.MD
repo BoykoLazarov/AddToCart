@@ -41,18 +41,22 @@ Test Demo project against the https://www.amazon.co.uk/ website
 4. Number of utility classes used for different needs 
 * JsonFileReader - reads values from json files, in this case the WebSettings,json file
 * WebSettingsProvider - maps the json file to readable object
-* WebUtils - used to add conviniet webElement methods such as: 
-	* WaitUntilDisplayed()
-	* FindElementWithDisplayCheck()
-	* IsDisplayed()
 	
 5. Extensions
+* IWebElementExtensions for conviniet IWebElement functions
+	* WaitUntilDisplayed()
+	* GetElement()
+	* IsDisplayed()
 * StringExtensions class for conviniet string manipulation
 
-6. DriverProvider singleton class to initialize, quit, set the web driver and driver options
+6. DriverProvider singleton class to initialize, quit, 
 
-7. UserActionsTests class containing the NUnit tests
+7. DriverFactory class to set the web driver based on WebSettings.json value and driver options
 
-8. WebTestBaseClass with SetUp and TearDown methods to start and quit the web driver, navigate to the website and some logging
+8. DriverTimeouts class to set and get Default/Short timeouts, could be extendet with functions for conditional waits
 
-9. Name attribute class is used to add the "Name" attribute to the NUnit tests to have more user friendly readable test names
+9. UserActionsTests class containing the NUnit tests
+
+10. WebTestBaseClass with SetUp and TearDown methods to start and quit the web driver, navigate to the website and some logging
+
+11. Name attribute class is used to add the "Name" attribute to the NUnit tests to have more user friendly readable test names

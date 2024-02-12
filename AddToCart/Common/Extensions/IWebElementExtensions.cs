@@ -7,8 +7,8 @@ namespace AddToCart.Common.Extensions
     public static class IWebElementExtensions
     {
         private static IWebDriver Driver => DriverProvider.Instance.GetDriver();
-        private static WebDriverWait Wait => Timeouts.GetDefaultWait();
-        private static WebDriverWait WaitShort => Timeouts.GetShortWait();
+        private static WebDriverWait Wait => DriverTimeouts.GetDefaultWait();
+        private static WebDriverWait WaitShort => DriverTimeouts.GetShortWait();
 
         public static void WaitUntilDisplayed(this By locator)
         {
@@ -53,6 +53,14 @@ namespace AddToCart.Common.Extensions
             }
         }
 
+        /// <summary>
+        /// Wait and retry for element to be displayed up to default timeout
+        /// return element if found
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        /// <exception cref="NoSuchElementException"></exception>
+        /// <exception cref="NotFoundException"></exception>
         public static IWebElement GetElement(this By locator)
         {
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
