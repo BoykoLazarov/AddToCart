@@ -15,7 +15,7 @@ namespace AddToCart.Pages
         private IWebElement SubtotalPrice => WebUtils.FindElementWithDisplayCheck(SubtotalPriceLocator);
         private IWebElement ShoppingCartButton => WebUtils.FindElementWithDisplayCheck(ShoppingCartLocator);
 
-        private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(AddedToBasketLabelLocator);
+        private void WaitToBeDisplayed() => AddedToBasketLabelLocator.WaitUntilDisplayed();
 
         public string GetSubtotalPrice() => SubtotalPrice.GetAttribute("data-price").GetNumericPart();
         public ShoppingCartPage ClickShoppingCart()

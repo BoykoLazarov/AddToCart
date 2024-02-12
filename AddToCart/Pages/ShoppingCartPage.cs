@@ -19,7 +19,7 @@ namespace AddToCart.Pages
         private IWebElement GiftLabel => WebUtils.FindElementWithDisplayCheck(GiftLabelLocator);
         private IWebElement GiftCheckbox => WebUtils.FindElementWithDisplayCheck(GiftCheckboxLocator);
 
-        private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(CartContainerLocator);
+        private void WaitToBeDisplayed() => CartContainerLocator.WaitUntilDisplayed();
 
         public string GetQuantity() => Quantity.Text;
         public string GetPrice() => Price.Text.GetNumericPart();

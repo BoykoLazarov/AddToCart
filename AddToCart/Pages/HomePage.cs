@@ -1,4 +1,5 @@
-﻿using AddToCart.Common.Utility;
+﻿using AddToCart.Common.Extensions;
+using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -31,7 +32,7 @@ namespace AddToCart.Pages
             {
                 AmazonMidLogo.Click();
             }
-            WebUtils.WaitUntilDisplayed(AmazonLogoLocator);
+            AmazonLogoLocator.WaitUntilDisplayed();
         }
 
         public void AcceptCookies()

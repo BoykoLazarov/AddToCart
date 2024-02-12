@@ -10,26 +10,6 @@ namespace AddToCart.Common.Utility
         private static WebDriverWait Wait => Timeouts.GetDefaultWait();
         private static WebDriverWait WaitShort => Timeouts.GetShortWait();
 
-        public static void WaitUntilDisplayed(By locator)
-        {
-            var element = Wait.Until(condition =>
-            {
-                try
-                {
-                    var elementToBeDisplayed = Driver.FindElement(locator);
-                    return elementToBeDisplayed.Displayed;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    return false;
-                }
-                catch (NoSuchElementException)
-                {
-                    return false;
-                }
-            });
-        }
-
         public static IWebElement FindElementWithDisplayCheck(By locator)
         {
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));

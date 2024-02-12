@@ -20,14 +20,11 @@ namespace AddToCart.Pages
 
         private IWebElement SearchBar => WebUtils.FindElementWithDisplayCheck(SearchBarLocator);
 
-        private void WaitToBeDisplayed()
-        {
-            WebUtils.WaitUntilDisplayed(BooksTitleLocator);
-        }
+        private void WaitToBeDisplayed() => BooksTitleLocator.WaitUntilDisplayed();
 
         public void BookSearch(string searchCriteria)
         {
-            WebUtils.WaitUntilDisplayed(SearchBarLocator);
+            SearchBarLocator.WaitUntilDisplayed();
             SearchBar.Click();
             SearchBar.SendKeys(searchCriteria);
             SearchBar.SendKeys(Keys.Enter);
@@ -35,7 +32,7 @@ namespace AddToCart.Pages
 
         public IWebElement GetFirstSearchResult()
         {
-            WebUtils.WaitUntilDisplayed(FirstSearchResultLocator);
+            FirstSearchResultLocator.WaitUntilDisplayed();
             return Driver.FindElements(SearchResultListLocator).First();
         }
 

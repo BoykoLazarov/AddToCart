@@ -20,7 +20,7 @@ namespace AddToCart.Pages
         private IWebElement ProductTitle => WebUtils.FindElementWithDisplayCheck(ProductTitleLocator);
         private IWebElement AddGiftOptionsCheckbox => WebUtils.FindElementWithDisplayCheck(AddGiftOptionsLocator);
 
-        private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(BackToResultsButton);
+        private void WaitToBeDisplayed() => BackToResultsButton.WaitUntilDisplayed();
 
         public void ClickPaperbackOption() => PaperbackOption.Click();
         public string GetProductTitle() => ProductTitle.Text;
