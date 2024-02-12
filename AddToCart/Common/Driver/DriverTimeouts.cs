@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AddToCart.Common.Driver
 {
-    public static class Timeouts
+    public static class DriverTimeouts
     {
         private const int DEFAULT_TIMEOUT = 30;
         private const int SHORT_TIMEOUT = 5;
