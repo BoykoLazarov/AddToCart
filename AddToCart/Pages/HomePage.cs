@@ -20,15 +20,15 @@ namespace AddToCart.Pages
         private IWebElement DismissAddressMessage => WebUtils.FindElementWithDisplayCheck(AddressMessageLocator);
         private IWebElement BooksLink => WebUtils.FindElementWithDisplayCheck(BooksHyperlinkLocator);
 
-        public bool IsAmazonLogoDisplayed() => WebUtils.IsDisplayed(AmazonLogoLocator);
-        public bool IsSignInLinkDisplayed() => WebUtils.IsDisplayed(HelloSignInLinkLocator);
+        public bool IsAmazonLogoDisplayed() => AmazonLogoLocator.IsDisplayed();
+        public bool IsSignInLinkDisplayed() => HelloSignInLinkLocator.IsDisplayed();
 
         private void WaitToBeDisplayed()
         {
             // Sometimes a mediator page is displayed before the HomePage
             // In this case we are checking if displayed
             // And then navigating to the HoMePage if true
-            if (WebUtils.IsDisplayed(AmazonMidLogoLocator))
+            if (AmazonMidLogoLocator.IsDisplayed())
             {
                 AmazonMidLogo.Click();
             }
@@ -37,7 +37,7 @@ namespace AddToCart.Pages
 
         public void AcceptCookies()
         {
-            if (WebUtils.IsDisplayed(AcceptCookiesLocator))
+            if (AcceptCookiesLocator.IsDisplayed())
             {
                 AcceptCookiesButton.Click();
             }
@@ -45,7 +45,7 @@ namespace AddToCart.Pages
 
         public void DismissMessageIfDisplayed()
         {
-            if (WebUtils.IsDisplayed(AddressMessageLocator))
+            if (AddressMessageLocator.IsDisplayed())
             {
                 DismissAddressMessage.Click();
             }

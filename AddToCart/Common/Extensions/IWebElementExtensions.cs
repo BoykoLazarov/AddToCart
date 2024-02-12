@@ -29,5 +29,28 @@ namespace AddToCart.Common.Extensions
                 }
             });
         }
+
+        /// <summary>
+        /// Check if element is displayed with short timeout - 5 seconds
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        public static bool IsDisplayed(this By locator)
+        {
+            WaitShort.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException), typeof(StaleElementReferenceException));
+
+            try
+            {
+                return WaitShort.Until(driver =>
+                {
+                    var element = driver.FindElement(locator);
+                    return element.Displayed;
+                });
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
+        }
     }
 }
