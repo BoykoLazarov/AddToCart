@@ -2,15 +2,15 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace AddToCart.Common.Utility
+namespace AddToCart.Common.Extensions
 {
-    public class WebUtils
+    public static class IWebElementExtensions
     {
         private static IWebDriver Driver => DriverProvider.Instance.GetDriver();
         private static WebDriverWait Wait => Timeouts.GetDefaultWait();
         private static WebDriverWait WaitShort => Timeouts.GetShortWait();
 
-        public static void WaitUntilDisplayed(By locator)
+        public static void WaitUntilDisplayed(this By locator)
         {
             var element = Wait.Until(condition =>
             {
@@ -30,7 +30,30 @@ namespace AddToCart.Common.Utility
             });
         }
 
-        public static IWebElement FindElementWithDisplayCheck(By locator)
+        /// <summary>
+        /// Check if element is displayed with short timeout - 5 seconds
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns></returns>
+        public static bool IsDisplayed(this By locator)
+        {
+            WaitShort.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException), typeof(StaleElementReferenceException));
+
+            try
+            {
+                return WaitShort.Until(driver =>
+                {
+                    var element = driver.FindElement(locator);
+                    return element.Displayed;
+                });
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
+        }
+
+        public static IWebElement GetElement(this By locator)
         {
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException));
             try
@@ -51,29 +74,6 @@ namespace AddToCart.Common.Utility
             catch (WebDriverTimeoutException)
             {
                 throw new NotFoundException($"Element with locator '{locator}' not found or not displayed within the default timeout.");
-            }
-        }
-
-        /// <summary>
-        /// Check if element is displayed with short timeout - 5 seconds
-        /// </summary>
-        /// <param name="locator"></param>
-        /// <returns></returns>
-        public static bool IsDisplayed(By locator)
-        {
-            WaitShort.IgnoreExceptionTypes(typeof(NoSuchElementException), typeof(ElementNotVisibleException), typeof(StaleElementReferenceException));
-
-            try
-            {
-                return WaitShort.Until(driver =>
-                {
-                    var element = driver.FindElement(locator);
-                    return element.Displayed;
-                });
-            }
-            catch (WebDriverTimeoutException)
-            {
-                return false;
             }
         }
     }

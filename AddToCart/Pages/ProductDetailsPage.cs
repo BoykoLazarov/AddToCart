@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -15,12 +14,12 @@ namespace AddToCart.Pages
         private By ProductTitleLocator => By.Id("productTitle");
         private By AddGiftOptionsLocator => By.Id("gift-wrap");
 
-        private IWebElement PaperbackOption => WebUtils.FindElementWithDisplayCheck(PaperbackOptionLocator);
-        private IWebElement AddToCartButton => WebUtils.FindElementWithDisplayCheck(AddToCartButtonLocator);
-        private IWebElement ProductTitle => WebUtils.FindElementWithDisplayCheck(ProductTitleLocator);
-        private IWebElement AddGiftOptionsCheckbox => WebUtils.FindElementWithDisplayCheck(AddGiftOptionsLocator);
+        private IWebElement PaperbackOption => PaperbackOptionLocator.GetElement();
+        private IWebElement AddToCartButton => AddToCartButtonLocator.GetElement();
+        private IWebElement ProductTitle => ProductTitleLocator.GetElement();
+        private IWebElement AddGiftOptionsCheckbox => AddGiftOptionsLocator.GetElement();
 
-        private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(BackToResultsButton);
+        private void WaitToBeDisplayed() => BackToResultsButton.WaitUntilDisplayed();
 
         public void ClickPaperbackOption() => PaperbackOption.Click();
         public string GetProductTitle() => ProductTitle.Text;

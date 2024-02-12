@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -18,16 +17,13 @@ namespace AddToCart.Pages
 
         private const string Paperback = "Paperback";
 
-        private IWebElement SearchBar => WebUtils.FindElementWithDisplayCheck(SearchBarLocator);
+        private IWebElement SearchBar => SearchBarLocator.GetElement();
 
-        private void WaitToBeDisplayed()
-        {
-            WebUtils.WaitUntilDisplayed(BooksTitleLocator);
-        }
+        private void WaitToBeDisplayed() => BooksTitleLocator.WaitUntilDisplayed();
 
         public void BookSearch(string searchCriteria)
         {
-            WebUtils.WaitUntilDisplayed(SearchBarLocator);
+            SearchBarLocator.WaitUntilDisplayed();
             SearchBar.Click();
             SearchBar.SendKeys(searchCriteria);
             SearchBar.SendKeys(Keys.Enter);
@@ -35,7 +31,7 @@ namespace AddToCart.Pages
 
         public IWebElement GetFirstSearchResult()
         {
-            WebUtils.WaitUntilDisplayed(FirstSearchResultLocator);
+            FirstSearchResultLocator.WaitUntilDisplayed();
             return Driver.FindElements(SearchResultListLocator).First();
         }
 

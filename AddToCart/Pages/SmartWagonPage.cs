@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -12,10 +11,10 @@ namespace AddToCart.Pages
         private By SubtotalPriceLocator => By.Id("sw-subtotal");
         private By ShoppingCartLocator => By.Id("nav-cart");
 
-        private IWebElement SubtotalPrice => WebUtils.FindElementWithDisplayCheck(SubtotalPriceLocator);
-        private IWebElement ShoppingCartButton => WebUtils.FindElementWithDisplayCheck(ShoppingCartLocator);
+        private IWebElement SubtotalPrice => SubtotalPriceLocator.GetElement();
+        private IWebElement ShoppingCartButton => ShoppingCartLocator.GetElement();
 
-        private void WaitToBeDisplayed() => WebUtils.WaitUntilDisplayed(AddedToBasketLabelLocator);
+        private void WaitToBeDisplayed() => AddedToBasketLabelLocator.WaitUntilDisplayed();
 
         public string GetSubtotalPrice() => SubtotalPrice.GetAttribute("data-price").GetNumericPart();
         public ShoppingCartPage ClickShoppingCart()
