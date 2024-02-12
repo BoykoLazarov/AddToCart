@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -15,10 +14,10 @@ namespace AddToCart.Pages
         private By AddressMessageLocator = By.XPath("//*[@class='a-button a-spacing-top-base a-button-base glow-toaster-button glow-toaster-button-dismiss']");
         private By BooksHyperlinkLocator = By.XPath("//*[@data-csa-c-slot-id='nav_cs_4']");
 
-        private IWebElement AmazonMidLogo => WebUtils.FindElementWithDisplayCheck(AmazonMidLogoLocator);
-        private IWebElement AcceptCookiesButton => WebUtils.FindElementWithDisplayCheck(AcceptCookiesLocator);
-        private IWebElement DismissAddressMessage => WebUtils.FindElementWithDisplayCheck(AddressMessageLocator);
-        private IWebElement BooksLink => WebUtils.FindElementWithDisplayCheck(BooksHyperlinkLocator);
+        private IWebElement AmazonMidLogo => AmazonMidLogoLocator.GetElement();
+        private IWebElement AcceptCookiesButton => AcceptCookiesLocator.GetElement();
+        private IWebElement DismissAddressMessage => AddressMessageLocator.GetElement();
+        private IWebElement BooksLink => BooksHyperlinkLocator.GetElement();
 
         public bool IsAmazonLogoDisplayed() => AmazonLogoLocator.IsDisplayed();
         public bool IsSignInLinkDisplayed() => HelloSignInLinkLocator.IsDisplayed();

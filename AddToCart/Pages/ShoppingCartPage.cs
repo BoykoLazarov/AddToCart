@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -14,10 +13,10 @@ namespace AddToCart.Pages
         private By GiftLabelLocator => By.XPath("//*[normalize-space(text())='This order contains a gift']");
         private By GiftCheckboxLocator => By.Id("sc-buy-box-gift-checkbox");
 
-        private IWebElement Price => WebUtils.FindElementWithDisplayCheck(PriceLocator);
-        private IWebElement Quantity => WebUtils.FindElementWithDisplayCheck(QuantityLocator);
-        private IWebElement GiftLabel => WebUtils.FindElementWithDisplayCheck(GiftLabelLocator);
-        private IWebElement GiftCheckbox => WebUtils.FindElementWithDisplayCheck(GiftCheckboxLocator);
+        private IWebElement Price => PriceLocator.GetElement();
+        private IWebElement Quantity => QuantityLocator.GetElement();
+        private IWebElement GiftLabel => GiftLabelLocator.GetElement();
+        private IWebElement GiftCheckbox => GiftCheckboxLocator.GetElement();
 
         private void WaitToBeDisplayed() => CartContainerLocator.WaitUntilDisplayed();
 

@@ -1,5 +1,4 @@
 ﻿using AddToCart.Common.Extensions;
-using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -18,7 +17,7 @@ namespace AddToCart.Pages
 
         private const string Paperback = "Paperback";
 
-        private IWebElement SearchBar => WebUtils.FindElementWithDisplayCheck(SearchBarLocator);
+        private IWebElement SearchBar => SearchBarLocator.GetElement();
 
         private void WaitToBeDisplayed() => BooksTitleLocator.WaitUntilDisplayed();
 
