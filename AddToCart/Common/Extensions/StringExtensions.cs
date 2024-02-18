@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using AddToCart.Common.Utility;
+using System.Text.RegularExpressions;
 
 namespace AddToCart.Common.Extensions
 {
@@ -11,11 +12,11 @@ namespace AddToCart.Common.Extensions
             if (match.Success)
             {
                 numericPart = match.Value;
-                Console.WriteLine($"Extracted Numeric Part: {numericPart}");
+                InstanceLogger.Instance.Info($"Extracted Numeric Part: {numericPart}");
             }
             else
             {
-                Console.WriteLine("No numeric part found in the string.");
+                InstanceLogger.Instance.Info("No numeric part found in the string.");
             }
 
             return numericPart;

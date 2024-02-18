@@ -26,7 +26,7 @@ namespace AddToCart.Common.Utility
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error reading JSON file: {ex.Message}");
+                InstanceLogger.Instance.Info($"Error reading JSON file: {ex.Message}");
                 throw;
             }
         }

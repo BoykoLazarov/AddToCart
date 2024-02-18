@@ -1,4 +1,5 @@
 ﻿using AddToCart.Common.Extensions;
+using AddToCart.Common.Utility;
 using OpenQA.Selenium;
 
 namespace AddToCart.Pages
@@ -38,14 +39,14 @@ namespace AddToCart.Pages
         public bool IsTitleCorrect(IWebElement result, string searchQuery)
         {
             IWebElement bookTitleElement = result.FindElement(BookTitleLocator);
-            Console.WriteLine($"Element text is: {bookTitleElement.Text}");
+            InstanceLogger.Instance.Info($"Element text is: {bookTitleElement.Text}");
             return bookTitleElement.Text.Equals(searchQuery);
         }
 
         public bool IsTherePaperBack(IWebElement result)
         {
             IWebElement paperbackElement = result.FindElement(PaperBackLocator);
-            Console.WriteLine($"Element text is: {paperbackElement.Text}");
+            InstanceLogger.Instance.Info($"Element text is: {paperbackElement.Text}");
             return paperbackElement.Text.Equals(Paperback);
         }
 
