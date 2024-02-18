@@ -31,8 +31,8 @@ namespace AddToCart.Common.Driver
                     return GetFirefoxDriverWithOptions();
 
                 default:
-                    Console.WriteLine($"Browser '{browser}' is not supported.");
-                    Console.WriteLine($"Starting default '{CHROME}' web driver.");
+                    InstanceLogger.Instance.Info($"Browser '{browser}' is not supported.");
+                    InstanceLogger.Instance.Info($"Starting default '{CHROME}' web driver.");
                     return GetChromeDriverWithOptions();
             }
         }

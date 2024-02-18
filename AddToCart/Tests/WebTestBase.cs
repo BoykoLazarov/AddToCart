@@ -18,7 +18,7 @@ namespace AddToCart.Tests
 
             string testCaseName = GetTestCaseNameAttribute();
 
-            Console.WriteLine($"Starting test case: {testCaseName}{Environment.NewLine}");
+            InstanceLogger.Instance.Info($"Starting test case: {testCaseName}{Environment.NewLine}");
         }
 
         public HomePage NavigateToHomePage()
@@ -37,6 +37,8 @@ namespace AddToCart.Tests
         [TearDown]
         public void TearDown()
         {
+            string testCaseName = GetTestCaseNameAttribute();
+            InstanceLogger.Instance.Info($"Finishing test case: {testCaseName}{Environment.NewLine}");
             DriverProvider.Instance.QuitDriver();
         }
     }

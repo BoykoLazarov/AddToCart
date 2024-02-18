@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AddToCart.Common.Utility;
+using OpenQA.Selenium;
 
 namespace AddToCart.Common.Driver
 {
@@ -29,13 +30,13 @@ namespace AddToCart.Common.Driver
                 }
                 else
                 {
-                    Console.WriteLine("Instance drivers are closed");
+                    InstanceLogger.Instance.Info("Instance drivers are closed");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error while quitting the driver instance");
-                Console.WriteLine($"Driver instance exception message: {ex}");
+                InstanceLogger.Instance.Info("Error while quitting the driver instance");
+                InstanceLogger.Instance.Info($"Driver instance exception message: {ex}");
             }
         }
     }
