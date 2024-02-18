@@ -41,6 +41,7 @@ Test Demo project against the https://www.amazon.co.uk/ website
 4. Number of utility classes used for different needs 
 * JsonFileReader - reads values from json files, in this case the WebSettings,json file
 * WebSettingsProvider - maps the json file to readable object
+* InstanceLogger - A singleton wrapper class for log4net, facilitating easy log creation and recording in an output file
 	
 5. Extensions
 * IWebElementExtensions for conviniet IWebElement functions
